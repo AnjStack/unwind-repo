@@ -19,38 +19,39 @@ const Sidebar = () => {
 
   return (
     <>
-      {/* Mobile Hamburger */}
-      <div className="md:hidden flex items-center p-4 bg-white shadow-md">
+      {/* Mobile Hamburger - Top-left */}
+      <div className="md:hidden flex justify-start items-center h-14 bg-white shadow-md px-4">
         <button
           onClick={() => setOpen(!open)}
-          className="text-2xl text-gray-700"
+          className="text-3xl text-gray-700 focus:outline-none"
         >
           <FiMenu />
         </button>
-        <span className="ml-4 font-bold text-lg text-gray-800">Menu</span>
       </div>
 
       {/* Sidebar */}
       <div
-        className={`fixed top-0 left-0 h-full bg-white shadow-lg py-6 z-50
-          w-64 transform transition-transform duration-300 ease-in-out
-          ${open ? "translate-x-0" : "-translate-x-full"} 
+        className={`fixed top-[88px] left-0 bg-white shadow-lg z-50 w-64 transform
+          transition-transform duration-500 ease-in-out
+          ${open ? "translate-x-0" : "-translate-x-full"}
           md:translate-x-0 md:relative md:flex md:flex-col`}
+        style={{ height: `calc(100vh - 88px)` }} // height below navbar
       >
-        {menus.map((menu, i) => (
-          <button
-            key={i}
-            className="group flex items-center gap-4 px-6 py-4 mb-2 rounded-lg 
-                       text-lg font-bold text-gray-700 
-                       transition-all duration-300 ease-in-out
-                       hover:bg-purple-100 hover:text-purple-600 hover:scale-105"
-          >
-            <span className="text-2xl transition-transform duration-300 ease-in-out group-hover:scale-110">
-              {menu.icon}
-            </span>
-            {menu.label}
-          </button>
-        ))}
+        <div className="py-6 flex flex-col">
+          {menus.map((menu, i) => (
+            <button
+              key={i}
+              className="group flex items-center gap-4 px-6 py-4 mb-2 rounded-lg 
+                         text-lg font-bold text-gray-700 transition-all duration-300 ease-in-out
+                         hover:bg-purple-100 hover:text-purple-600 hover:scale-105"
+            >
+              <span className="text-2xl transition-transform duration-300 ease-in-out group-hover:scale-110">
+                {menu.icon}
+              </span>
+              {menu.label}
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Overlay for mobile */}
